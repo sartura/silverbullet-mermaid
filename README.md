@@ -57,6 +57,10 @@ You can use the `mermaid` config to tweak a few things:
       integrity = "new integrity hash",
       -- or disable integrity checking
       integrity_disabled = true
+      -- optional: pass Mermaid initialize options
+      initialize = {
+        securityLevel = "loose",
+      },
       -- optional: register icon packs 
       icon_packs = {
         {
@@ -66,4 +70,3 @@ You can use the `mermaid` config to tweak a few things:
       },
     })
     ```
-

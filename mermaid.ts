@@ -6,6 +6,7 @@ export async function widget(
 ): Promise<CodeWidgetContent> {
   const config = await system.getConfig("mermaid", {version: "11.10.1"})
   const mermaidVersion = config?.version;
+  const mermaidInitialize = JSON.stringify(config?.initialize ?? {});
   let mermaidHash : string | undefined = config?.integrity ? `"${config.integrity}"` : `"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="`
   if (config?.integrity_disabled) {
     mermaidHash = undefined;
@@ -25,6 +26,7 @@ export async function widget(
     html: `<pre class="mermaid">${bodyText.replaceAll("<", "&lt;")}</pre>`,
     script: `
     loadJsByUrl("https://cdn.jsdelivr.net/npm/mermaid@${mermaidVersion}/dist/mermaid.min.js", ${mermaidHash}).then(() => {
+      mermaid.initialize(${mermaidInitialize});
       mermaid.init().then(updateHeight);
       mermaid.registerIconPacks([${packs}]);
     });
