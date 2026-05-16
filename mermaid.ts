@@ -7,6 +7,7 @@ export async function widget(
   const config = await system.getConfig("mermaid", {version: "11.15.0"})
   const mermaidVersion = config?.version;
   const mermaidInitialize = JSON.stringify(config?.initialize ?? {});
+  const mermaidCenter = config?.center ? "true" : "false";
   let mermaidHash : string | undefined = config?.integrity ? `"${config.integrity}"` : `"sha256-cBN+d7snO7LvlyuG6LBADMqL5TyyW/xFkRoYbcmGZd4="`
   if (config?.integrity_disabled) {
     mermaidHash = undefined;
@@ -27,7 +28,16 @@ export async function widget(
     script: `
     loadJsByUrl("https://cdn.jsdelivr.net/npm/mermaid@${mermaidVersion}/dist/mermaid.min.js", ${mermaidHash}).then(() => {
       mermaid.initialize(${mermaidInitialize});
-      mermaid.init().then(updateHeight);
+      mermaid.init().then(() => {
+        if (${mermaidCenter}) {
+          document.querySelectorAll("svg").forEach((svg) => {
+            svg.style.display = "block";
+            svg.style.marginLeft = "auto";
+            svg.style.marginRight = "auto";
+          });
+        }
+        updateHeight();
+      });
       mermaid.registerIconPacks([${packs}]);
     });
     document.addEventListener("click", () => {

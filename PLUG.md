@@ -27,7 +27,13 @@ You can use the `mermaid` config to tweak a few things:
       version = "11.15.0",
       integrity = "new integrity hash",
       -- or disable integrity checking
-      integrity_disabled = true
+      integrity_disabled = true,
+      -- optional: pass Mermaid initialize options
+      initialize = {
+        securityLevel = "loose",
+      },
+      -- optional: center rendered diagrams in the widget
+      center = true,
       -- optional: register icon packs 
       icon_packs = {
         {
