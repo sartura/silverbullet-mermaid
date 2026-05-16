@@ -63,6 +63,11 @@ You can use the `mermaid` config to tweak a few things:
       },
       -- optional: center rendered diagrams in the widget
       center = true,
+      -- optional: configure Mermaid themes
+      theme = "default",
+      look = "classic",
+      fill_background = false,
+      custom_themes = {},
       -- optional: register icon packs 
       icon_packs = {
         {
@@ -72,3 +77,13 @@ You can use the `mermaid` config to tweak a few things:
       },
     })
     ```
+
+### Theming
+
+The plug supports Mermaid's built-in themes (`default`, `base`, `dark`,
+`forest`, `neutral`, and `null`) and named custom themes defined under
+`custom_themes`. A custom theme uses `based_on` for the Mermaid base theme and
+passes the remaining fields as Mermaid theme variables.
+
+Per-diagram frontmatter can override `theme` and `fillBackground` inside
+Mermaid's `config` section.
