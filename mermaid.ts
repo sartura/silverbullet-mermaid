@@ -4,10 +4,10 @@ import { CodeWidgetContent } from "@silverbulletmd/silverbullet/type/client";
 export async function widget(
     bodyText: string,
 ): Promise<CodeWidgetContent> {
-  const config = await system.getConfig("mermaid", {version: "11.10.1"})
+  const config = await system.getConfig("mermaid", {version: "11.15.0"})
   const mermaidVersion = config?.version;
   const mermaidInitialize = JSON.stringify(config?.initialize ?? {});
-  let mermaidHash : string | undefined = config?.integrity ? `"${config.integrity}"` : `"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="`
+  let mermaidHash : string | undefined = config?.integrity ? `"${config.integrity}"` : `"sha256-cBN+d7snO7LvlyuG6LBADMqL5TyyW/xFkRoYbcmGZd4="`
   if (config?.integrity_disabled) {
     mermaidHash = undefined;
   }

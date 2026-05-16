@@ -53,7 +53,7 @@ You can use the `mermaid` config to tweak a few things:
 
     ```space-lua
     config.set("mermaid", {
-      version = "11.4.0",
+      version = "11.15.0",
       integrity = "new integrity hash",
       -- or disable integrity checking
       integrity_disabled = true
